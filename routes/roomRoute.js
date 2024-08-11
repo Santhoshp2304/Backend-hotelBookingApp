@@ -36,14 +36,14 @@ router.post("/addRoom",upload.array("media"), async (req,res)=>{
             rentperday,
             description,
             images : mediaUrls.filter((url) =>{
-                return url.endsWith(".jpg") || url.endsWith(".png")
+                return url.endsWith(".jpg") || url.endsWith(".png") || url.endsWith(".jpeg")
         })
         });
         await newRoom.save();
-        res.json({message :'room added successfully'});
+        res.status(200).json({message :'room added successfully'});
     } catch (error) {
         console.log(error);
-        res.json({message: error.message});
+        res.status(403).json({message: error.message});
     }
 });
 
@@ -54,6 +54,16 @@ router.get("/getRooms", async (req,res)=>{
     } catch (error) {
         res.status(400).json('error in getting rooms');
     }
+})
+
+router.get("/getRoom/:_id", async (req,res)=>{
+    try {
+        const roomid = req.params;
+        const room = await Room.findById(roomid);
+        res.status(200).json(room);
+    } catch (error) {
+        res.status(400).json('error in getting rooms');
+    } 
 })
 
 module.exports=router;
