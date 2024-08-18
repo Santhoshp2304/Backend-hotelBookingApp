@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const Room = require("../models/Room");
-const { route } = require("./userRoutes");
 const multer =require("multer") 
 const cloudinary = require("../config/cloudinary");
 require("dotenv").config;
