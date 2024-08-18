@@ -4,7 +4,6 @@ const userRoute =require('./routes/userRoutes');
 const roomRoute = require("./routes/roomRoute");
 const bookingRoute =require('./routes/bookingRoute');
 const reviewRoute =require('./routes/reviewRoute')
-
 const bodyParser = require('body-parser');
 const cors = require('cors');
 require("dotenv").config()
