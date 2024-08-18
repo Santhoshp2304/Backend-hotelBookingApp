@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const userRoute =require('./routes/userRoutes');
 const roomRoute = require("./routes/roomRoute");
 const bookingRoute =require('./routes/bookingRoute');
+const reviewRoute =require('./routes/reviewRoute')
+
 const bodyParser = require('body-parser');
 const cors = require('cors');
 require("dotenv").config()
@@ -16,6 +18,7 @@ app.use(cors());
 app.use('/apiUser',userRoute);
 app.use("/apiRoom",roomRoute);
 app.use('/apiBooking',bookingRoute);
+app.use('/apiReview',reviewRoute)
 
 mongoose.connect(process.env.MONGODB).then(()=>{
 console.log(`connected to MONGODB`);

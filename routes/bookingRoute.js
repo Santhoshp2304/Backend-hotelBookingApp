@@ -67,7 +67,7 @@ router.post("/book", async (req, res) => {
 });
 
 router.get("/getBookings/:userId", async (req, res) => {
-  const  {userId}  = req.params;
+  const { userId } = req.params;
   try {
     const userBookings = await Booking.find({ userId });
     res.json(userBookings);
@@ -77,12 +77,31 @@ router.get("/getBookings/:userId", async (req, res) => {
 });
 
 router.get("/getAllBookings", async (req, res) => {
-  
   try {
     const allBookings = await Booking.find({});
     res.json(allBookings);
   } catch (error) {
     res.json(error);
+  }
+});
+
+router.post("/cancelBooking", async (req, res) => {
+  const { bookingId, roomId } = req.body;
+  try {
+    const selectedBooking = await Booking.findOne({ _id: bookingId });
+    selectedBooking.status = "cancelled";
+  //  console.log("selectedBooking : ",selectedBooking)
+
+    await selectedBooking.save()
+    const room = await Room.findById({ _id: roomId });
+    const temp = room.currentbookings.filter(
+      (booking) => booking.bookingId.toString() != bookingId
+    );
+    room.currentbookings = temp;
+    await room.save();
+    res.json("Booking cancelled succesfully");
+  } catch (error) {
+    res.json(error.message);
   }
 });
 module.exports = router;
