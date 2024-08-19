@@ -4,7 +4,7 @@
 
 # Please use the deployed url - https://backend-hotelbookingapp-2.onrender.com
 
-# for user endpoints
+#for user endpoints
 
 ## use '/apiUser/register' to register
 ## use '/apiUser/login' & '/apiUser/getUser' to login
@@ -24,7 +24,7 @@
 ## use '/apiBooking/cancelBooking' to cancel the booking
 
 
-# for Review endpoints
+#for Review endpoints
 
 ## use '/apiReview/postReview' to add review
 ## use '/apiReview/gettReviews' to all reviews
